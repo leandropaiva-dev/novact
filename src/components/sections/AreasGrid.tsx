@@ -1,0 +1,121 @@
+"use client";
+
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  Landmark,
+  Compass,
+  Leaf,
+  Cpu,
+  GraduationCap,
+  HandHeart,
+  Users,
+  Palette,
+  Microscope,
+  Waypoints,
+  type LucideIcon,
+} from "lucide-react";
+import { home } from "@/content/home";
+import { Container } from "@/components/ui/Container";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { ArrowLink } from "@/components/ui/ArrowLink";
+import { revealVariants, staggerParent } from "@/components/motion/primitives";
+
+const { areas } = home;
+
+const iconMap: Record<string, LucideIcon> = {
+  landmark: Landmark,
+  compass: Compass,
+  leaf: Leaf,
+  cpu: Cpu,
+  "graduation-cap": GraduationCap,
+  "hand-heart": HandHeart,
+  users: Users,
+  palette: Palette,
+  microscope: Microscope,
+  waypoints: Waypoints,
+};
+
+const colorMap: Record<string, string> = {
+  blue: "bg-brand-blue",
+  green: "bg-brand-green",
+  amber: "bg-brand-amber",
+  orange: "bg-brand-orange",
+  "blue-soft": "bg-brand-blue-soft",
+};
+
+// Scrim bottom-weighted: garante texto branco AA sobre qualquer cor da paleta.
+const scrim =
+  "bg-[linear-gradient(155deg,rgba(20,30,45,0.15)_0%,rgba(20,30,45,0.32)_46%,rgba(20,30,45,0.62)_100%)]";
+
+export function AreasGrid() {
+  const reduced = useReducedMotion();
+
+  const grid = (
+    <ul className="mt-10 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+      {areas.cards.map((card) => {
+        const Icon = iconMap[card.icon];
+        return (
+          <motion.li
+            key={card.slug}
+            variants={reduced ? undefined : revealVariants}
+            data-reveal
+          >
+            <Link
+              href={`/areas#${card.slug}`}
+              className={`group relative flex h-full min-h-[190px] flex-col overflow-hidden rounded-[18px] p-5 text-white transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-2.5 focus-visible:-translate-y-2.5 hover:shadow-[0_30px_50px_-20px_rgba(20,30,45,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${colorMap[card.color]}`}
+            >
+              <span aria-hidden="true" className={`absolute inset-0 ${scrim}`} />
+              <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/25 transition-colors duration-300 group-hover:bg-white/25">
+                <Icon
+                  className="h-5 w-5 transition-transform duration-300 ease-out group-hover:scale-[1.18] motion-reduce:transition-none"
+                  strokeWidth={1.75}
+                  aria-hidden="true"
+                />
+              </span>
+              <span className="relative mt-auto pt-5">
+                <span className="block font-display text-[0.98rem] font-normal leading-[1.22] tracking-tight">
+                  {card.title}
+                </span>
+                <span className="mt-2 block text-[0.8rem] leading-[1.5] text-white/85">
+                  {card.blurb}
+                </span>
+              </span>
+            </Link>
+          </motion.li>
+        );
+      })}
+    </ul>
+  );
+
+  return (
+    <section className="bg-surface-muted py-20 md:py-28">
+      <Container>
+        <div className="max-w-2xl">
+          <SectionEyebrow>{areas.eyebrow}</SectionEyebrow>
+          <h2 className="mt-4 font-display text-[clamp(1.6rem,4vw,2.25rem)] font-normal leading-tight tracking-tight text-ink text-balance">
+            {areas.title}
+          </h2>
+          <p className="mt-4 text-base leading-[1.7] text-ink-muted">{areas.intro}</p>
+        </div>
+
+        {reduced ? (
+          grid
+        ) : (
+          <motion.div
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-8% 0px" }}
+          >
+            {grid}
+          </motion.div>
+        )}
+
+        <div className="mt-9">
+          <ArrowLink href={areas.link.href}>{areas.link.label}</ArrowLink>
+        </div>
+      </Container>
+    </section>
+  );
+}
