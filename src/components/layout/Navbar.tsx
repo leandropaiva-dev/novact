@@ -39,10 +39,8 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-[background-color,box-shadow] duration-300 motion-reduce:transition-none",
-        solid
-          ? "bg-white/80 shadow-[0_12px_32px_-20px_rgba(44,58,69,0.35)] backdrop-blur-md"
-          : "bg-transparent"
+        "sticky top-0 z-50 bg-white transition-shadow duration-300 motion-reduce:transition-none",
+        solid ? "shadow-[0_12px_32px_-20px_rgba(44,58,69,0.35)]" : "shadow-none"
       )}
     >
       <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 md:h-20 md:px-6 lg:w-[83.333%] lg:px-0">
@@ -59,7 +57,7 @@ export function Navbar() {
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "relative inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium transition-colors",
-                      active ? "text-ink" : "text-ink-muted hover:text-ink"
+                      active ? "text-ink" : "text-ink hover:text-brand-orange"
                     )}
                   >
                     {item.label}
@@ -113,10 +111,7 @@ export function Navbar() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       onClick={() => setOpen(false)}
-                      className={cn(
-                        "flex min-h-12 items-center gap-2.5 rounded-lg px-3 text-lg font-medium",
-                        active ? "text-ink" : "text-ink-muted"
-                      )}
+                      className="flex min-h-12 items-center gap-2.5 rounded-lg px-3 text-lg font-medium text-ink"
                     >
                       {active && <BrandO className="h-2.5 w-2.5" />}
                       {item.label}
