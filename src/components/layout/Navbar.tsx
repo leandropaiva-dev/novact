@@ -45,7 +45,7 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-20 md:px-6">
+      <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 md:h-20 md:px-6 lg:w-[83.333%] lg:px-0">
         <Logo />
 
         <nav aria-label="Navegação principal" className="hidden lg:block">
@@ -103,7 +103,7 @@ export function Navbar() {
               : "pointer-events-none -translate-y-2 opacity-0"
           )}
         >
-          <nav aria-label="Navegação móvel" className="mx-auto max-w-6xl px-4 pb-4 pt-2">
+          <nav aria-label="Navegação móvel" className="mx-auto max-w-7xl px-4 pb-4 pt-2">
             <ul>
               {siteConfig.nav.map((item) => {
                 const active = pathname === item.href;

@@ -17,7 +17,7 @@ export function Footer() {
           novact
         </span>
       </div>
-      <div className="relative mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
+      <div className="relative mx-auto w-full max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:w-[83.333%] lg:px-0">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <Logo dark />

@@ -33,12 +33,40 @@ function ApertureRing() {
 
 export function SaudeMental() {
   return (
-    <section className="relative overflow-hidden bg-brand-blue py-24 text-white md:py-32">
-      {/* Brilho quente concentrado — o calor é a assinatura desta secção */}
+    <section className="relative overflow-hidden py-24 text-white md:py-32">
+      {/* Gradiente quente da secção — só laranja → dourado (assinatura de calor) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[-10%] top-1/2 -z-0 h-[36rem] w-[36rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(245,130,43,0.42),rgba(240,180,74,0.10)_45%,transparent_70%)] blur-2xl"
+        className="absolute inset-0 -z-20 bg-[linear-gradient(120deg,#F77A3E_0%,#F89148_42%,#F4B84D_100%)]"
       />
+      {/* Overlay de contraste (opção C) — mantém o texto branco legível do lado esquerdo */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(45,18,6,0.42)_0%,rgba(45,18,6,0.14)_46%,transparent_72%)]"
+      />
+      {/* Brilho dourado subtil à direita, para profundidade */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[-12%] top-1/2 -z-10 h-[36rem] w-[36rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,225,170,0.28),transparent_66%)] blur-2xl"
+      />
+      {/* Motivo do círculo — anel branco, 25% visível no canto inferior esquerdo */}
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 -z-10 h-[26rem] w-[26rem] -translate-x-1/2 translate-y-1/2 sm:h-[34rem] sm:w-[34rem]"
+      >
+        <circle cx="50" cy="50" r="41" stroke="#fff" strokeWidth="18" opacity="0.22" />
+      </svg>
+      {/* Anel grande cortado no topo direito */}
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-0 -z-10 h-[52rem] w-[52rem] -translate-y-[30%] translate-x-[28%] sm:h-[66rem] sm:w-[66rem]"
+      >
+        <circle cx="50" cy="50" r="41" stroke="#fff" strokeWidth="18" opacity="0.22" />
+      </svg>
       <Container className="relative">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <Reveal>

@@ -48,36 +48,65 @@ const colorMap: Record<string, string> = {
 const scrim =
   "bg-[linear-gradient(155deg,rgba(20,30,45,0.15)_0%,rgba(20,30,45,0.32)_46%,rgba(20,30,45,0.62)_100%)]";
 
+// Áreas em destaque: ocupam 2 colunas no bento de desktop (área-líder + saúde mental).
+const featured = new Set(["projetos-cooperacao-financiamento", "saude-mental"]);
+
 export function AreasGrid() {
   const reduced = useReducedMotion();
 
+  // Mobile: carrossel scroll-snap (CSS puro). Tablet: grelha 2 col.
+  // Desktop: bento 4 col com 2 tiles largos → 12 células, 3 linhas, sem órfãos.
   const grid = (
-    <ul className="mt-10 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="mt-10 -mx-4 flex snap-x snap-mandatory gap-3.5 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
       {areas.cards.map((card) => {
         const Icon = iconMap[card.icon];
+        const isFeatured = featured.has(card.slug);
         return (
           <motion.li
             key={card.slug}
             variants={reduced ? undefined : revealVariants}
             data-reveal
+            className={`shrink-0 basis-[80%] snap-start sm:basis-auto sm:shrink ${
+              isFeatured ? "lg:col-span-2" : ""
+            }`}
           >
             <Link
               href={`/areas#${card.slug}`}
-              className={`group relative flex h-full min-h-[190px] flex-col overflow-hidden rounded-[18px] p-5 text-white transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-2.5 focus-visible:-translate-y-2.5 hover:shadow-[0_30px_50px_-20px_rgba(20,30,45,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${colorMap[card.color]}`}
+              className={`group relative flex h-full min-h-[190px] flex-col overflow-hidden rounded-[18px] p-5 text-white transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-2.5 focus-visible:-translate-y-2.5 hover:shadow-[0_30px_50px_-20px_rgba(20,30,45,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
+                isFeatured ? "lg:flex-row lg:items-center lg:gap-7 lg:p-7" : ""
+              } ${colorMap[card.color]}`}
             >
               <span aria-hidden="true" className={`absolute inset-0 ${scrim}`} />
-              <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/25 transition-colors duration-300 group-hover:bg-white/25">
+              <span
+                className={`relative flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/25 transition-colors duration-300 group-hover:bg-white/25 ${
+                  isFeatured ? "lg:h-14 lg:w-14 lg:shrink-0" : ""
+                }`}
+              >
                 <Icon
-                  className="h-5 w-5 transition-transform duration-300 ease-out group-hover:scale-[1.18] motion-reduce:transition-none"
+                  className={`h-5 w-5 transition-transform duration-300 ease-out group-hover:scale-[1.18] motion-reduce:transition-none ${
+                    isFeatured ? "lg:h-7 lg:w-7" : ""
+                  }`}
                   strokeWidth={1.75}
                   aria-hidden="true"
                 />
               </span>
-              <span className="relative mt-auto pt-5">
-                <span className="block font-display text-[0.98rem] font-normal leading-[1.22] tracking-tight">
+              <span
+                className={`relative mt-auto pt-5 ${
+                  isFeatured ? "lg:mt-0 lg:pt-0" : ""
+                }`}
+              >
+                <span
+                  className={`block font-display text-[0.98rem] font-normal leading-[1.22] tracking-tight ${
+                    isFeatured ? "lg:text-[1.3rem] lg:leading-[1.15]" : ""
+                  }`}
+                >
                   {card.title}
                 </span>
-                <span className="mt-2 block text-[0.8rem] leading-[1.5] text-white/85">
+                <span
+                  className={`mt-2 block text-[0.8rem] leading-[1.5] text-white/85 ${
+                    isFeatured ? "lg:mt-3 lg:text-[0.9rem] lg:leading-[1.55]" : ""
+                  }`}
+                >
                   {card.blurb}
                 </span>
               </span>

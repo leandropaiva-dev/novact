@@ -19,7 +19,7 @@ export function Hero() {
   const liveGradient = !reduced && !touch;
 
   return (
-    <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden text-white sm:min-h-[92vh]">
+    <section className="relative isolate -mt-16 flex min-h-[88vh] items-center overflow-hidden text-white sm:min-h-[92vh] md:-mt-20">
       {/* Camada de gradiente de marca (viva no desktop, estática no resto) */}
       {liveGradient ? (
         <motion.div
@@ -42,7 +42,7 @@ export function Hero() {
       {/* Anel cortado ambiente (aperture) — a sangrar pela direita, subtil */}
       <BrandO className="pointer-events-none absolute -right-24 -top-16 -z-10 h-[26rem] w-[26rem] opacity-[0.14] sm:-right-16 sm:h-[34rem] sm:w-[34rem]" />
 
-      <div className="mx-auto w-full max-w-6xl px-4 py-24 md:px-6">
+      <div className="mx-auto w-full max-w-7xl px-4 py-24 md:px-6 lg:w-[83.333%] lg:px-0">
         <div className="max-w-3xl">
           <motion.h1
             className="font-display text-[clamp(1.9rem,6vw,3.4rem)] font-normal leading-[1.08] tracking-tight text-balance"
