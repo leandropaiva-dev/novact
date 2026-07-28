@@ -45,7 +45,7 @@ const scrim =
 // Cabem exatamente N cards na largura, sem espreitar o próximo (gap-4 = 1rem):
 // 1 no telemóvel, 2 em tablet, 3 em desktop.
 const cardBasis =
-  "basis-full sm:basis-[calc((100%_-_1rem)/2)] lg:basis-[calc((100%_-_2rem)/3)]";
+  "basis-[80%] sm:basis-[calc((100%_-_1rem)/2)] lg:basis-[calc((100%_-_2rem)/3)]";
 
 export function Projetos() {
   const trackRef = useRef<HTMLUListElement>(null);
@@ -105,7 +105,7 @@ export function Projetos() {
 
         <ul
           ref={trackRef}
-          className="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto pt-3 pb-14 -mb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-7 -mx-4 flex snap-x snap-mandatory scroll-pl-4 gap-3.5 overflow-x-auto px-4 pt-3 pb-14 -mb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:scroll-pl-0 sm:gap-4 sm:px-0"
         >
           {projetos.preview.map((item) => {
             const Icon = iconMap[item.icon];

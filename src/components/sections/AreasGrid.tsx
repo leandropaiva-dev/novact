@@ -59,7 +59,7 @@ export function AreasGrid() {
   // Mobile: carrossel scroll-snap (CSS puro). Tablet: grelha 2 col.
   // Desktop: bento 4 col com 2 tiles largos → 12 células, 3 linhas, sem órfãos.
   const grid = (
-    <ul className="mt-10 -mx-4 flex snap-x snap-mandatory gap-3.5 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
+    <ul className="mt-10 -mx-4 flex snap-x snap-mandatory scroll-pl-4 gap-3.5 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:scroll-pl-0 sm:px-0 sm:pb-0 lg:grid-cols-4">
       {areas.cards.map((card) => {
         const Icon = iconMap[card.icon];
         const isFeatured = featured.has(card.slug);
