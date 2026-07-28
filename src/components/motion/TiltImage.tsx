@@ -9,14 +9,13 @@ import {
   useTransform,
   useReducedMotion,
 } from "framer-motion";
-import { useIsTouch } from "./Reveal";
 import { cn } from "@/lib/utils";
 
 /**
  * Foto que inclina no eixo X (rotateX) e ajusta escala conforme o scroll — como
  * uma tela a "deitar" ao entrar no viewport. A moldura é o gradiente da marca.
- * A imagem está sempre no DOM (não depende de JS). Desliga o movimento com
- * prefers-reduced-motion e em touch/mobile (fica estática, só a moldura).
+ * A imagem está sempre no DOM (não depende de JS). Anima também no mobile
+ * (decisão do cliente); só desliga com prefers-reduced-motion.
  */
 export function TiltImage({
   src,
@@ -36,8 +35,7 @@ export function TiltImage({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const touch = useIsTouch();
-  const still = reduced || touch;
+  const still = reduced;
 
   // Progresso durante toda a travessia: entra pelo fundo (0), fica centrada (0.5)
   // e sai pelo topo (1). Inclina numa direção ao entrar e no sentido oposto ao sair.

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useReducedMotion, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useIsTouch } from "@/components/motion/Reveal";
 
 // Cada entidade tem o seu próprio raio (r) — órbitas a distâncias diferentes,
 // para não ficar com cara de roda gigante. r em unidades do viewBox / % do container.
@@ -33,13 +32,12 @@ function nodePos(i: number) {
  * volta à sua volta (translação), ligadas por feixes de luz que emanam do centro.
  * Como as cabines de uma roda gigante, cada chip contra-roda para NUNCA girar no
  * próprio eixo — o texto fica sempre reto. Passar o rato pausa a roda e acende o
- * feixe da entidade sob o cursor. Movimento desliga em reduced-motion e touch. Só
- * transform/opacity.
+ * feixe da entidade sob o cursor. Anima também no mobile (decisão do cliente);
+ * só desliga em prefers-reduced-motion. Só transform/opacity.
  */
 export function PartnersDiagram() {
   const reduced = useReducedMotion();
-  const touch = useIsTouch();
-  const animate = !reduced && !touch;
+  const animate = !reduced;
 
   const [active, setActive] = useState<number | null>(null);
   const dim = active !== null;
