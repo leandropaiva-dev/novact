@@ -1,6 +1,5 @@
 import { home } from "@/content/home";
 import { Container } from "@/components/ui/Container";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -10,21 +9,20 @@ export function Associados() {
   const href = `/?assunto=${encodeURIComponent(associados.cta.assunto)}#contacto`;
 
   return (
-    <section className="relative bg-brand-blue py-14 text-white md:py-16">
-      {/* Fio de gradiente — reafirmação silenciosa da marca */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-brand" />
+    <section className="relative overflow-hidden py-16 text-white md:py-24">
+      {/* Gradiente da marca */}
+      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-gradient-brand" />
+      {/* Overlay de contraste — obrigatório sob texto branco sobre o gradiente */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-brand-overlay" />
       <Container>
-        <Reveal className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <SectionEyebrow tone="onDark">{associados.eyebrow}</SectionEyebrow>
-            <h2 className="mt-3 font-display text-[clamp(1.5rem,3.5vw,2rem)] font-normal leading-tight tracking-tight text-balance">
-              {associados.title}
-            </h2>
-            <p className="mt-3 max-w-xl text-base leading-[1.7] text-white/80">
-              {associados.text}
-            </p>
-          </div>
-          <div className="shrink-0">
+        <Reveal className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <h2 className="font-display text-[clamp(2.5rem,8vw,5rem)] font-normal uppercase leading-[0.98] tracking-tight text-balance">
+            {associados.title}
+          </h2>
+          <p className="mt-6 max-w-xl text-base leading-[1.7] text-white/85 md:text-lg">
+            {associados.text}
+          </p>
+          <div className="mt-9">
             <Button href={href} variant="onGradient">
               {associados.cta.label}
             </Button>

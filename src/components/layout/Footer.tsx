@@ -8,12 +8,40 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-brand-blue text-white">
+    <footer className="relative overflow-hidden text-white">
+      {/* Gradiente quente da marca — laranja → dourado (assinatura de calor) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-20 bg-[linear-gradient(120deg,#F77A3E_0%,#F89148_42%,#F4B84D_100%)]"
+      />
+      {/* Overlay de contraste — mantém o texto branco legível em toda a largura */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(45,18,6,0.44)_0%,rgba(45,18,6,0.32)_60%,rgba(45,18,6,0.24)_100%)]"
+      />
+      {/* Motivo de marca — anéis brancos cortados (como na secção Saúde Mental,
+          mas noutras posições). */}
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 sm:h-[36rem] sm:w-[36rem]"
+      >
+        <circle cx="50" cy="50" r="41" stroke="#fff" strokeWidth="18" opacity="0.1" />
+      </svg>
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-[34%] h-[40rem] w-[40rem] translate-x-[42%] sm:h-[52rem] sm:w-[52rem]"
+      >
+        <circle cx="50" cy="50" r="41" stroke="#fff" strokeWidth="18" opacity="0.1" />
+      </svg>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 select-none"
       >
-        <span className="block translate-y-[32%] bg-gradient-brand bg-clip-text pl-2 font-wordmark text-[9rem] font-normal lowercase leading-none tracking-[0.04em] text-transparent opacity-[0.08] md:text-[16rem]">
+        <span className="block translate-y-[32%] pl-2 font-wordmark text-[9rem] font-normal lowercase leading-none tracking-[0.04em] text-white opacity-[0.1] md:text-[16rem]">
           novact
         </span>
       </div>

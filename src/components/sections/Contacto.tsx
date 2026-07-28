@@ -35,6 +35,7 @@ export function Contacto() {
   useEffect(() => {
     const assunto = new URLSearchParams(window.location.search).get("assunto");
     if (assunto && (contacto.assuntos as readonly string[]).includes(assunto)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- prefill único a partir da URL, só após montar (evita mismatch de hidratação)
       setValues((v) => ({ ...v, assunto }));
     }
   }, []);
@@ -236,7 +237,19 @@ export function Contacto() {
 
           {/* Painel de contactos */}
           <Reveal delay={0.1}>
-            <div className="rounded-[18px] bg-brand-blue p-7 text-white">
+            <div className="relative overflow-hidden rounded-[18px] bg-gradient-brand p-7 text-white">
+              {/* Overlay de contraste — obrigatório sob texto branco sobre o gradiente */}
+              <div aria-hidden="true" className="absolute inset-0 bg-gradient-brand-overlay" />
+              {/* Motivo do círculo (assinatura da marca), cortado no canto inferior direito */}
+              <svg
+                viewBox="0 0 100 100"
+                fill="none"
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-0 right-0 h-56 w-56 translate-x-1/3 translate-y-1/3"
+              >
+                <circle cx="50" cy="50" r="41" stroke="#fff" strokeWidth="18" opacity="0.22" />
+              </svg>
+              <div className="relative">
               <h3 className="font-display text-lg">Contactos diretos</h3>
               <ul className="mt-5 space-y-1">
                 <li>
@@ -244,7 +257,7 @@ export function Contacto() {
                     href={`mailto:${siteConfig.email}`}
                     className="inline-flex min-h-11 items-center gap-3 text-sm text-white/85 transition-colors hover:text-white"
                   >
-                    <Mail className="h-4 w-4 shrink-0 text-brand-amber" aria-hidden="true" />
+                    <Mail className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
                     {siteConfig.email}
                   </a>
                 </li>
@@ -253,12 +266,12 @@ export function Contacto() {
                     href={siteConfig.phoneHref}
                     className="inline-flex min-h-11 items-center gap-3 text-sm text-white/85 transition-colors hover:text-white"
                   >
-                    <Phone className="h-4 w-4 shrink-0 text-brand-amber" aria-hidden="true" />
+                    <Phone className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
                     {siteConfig.phone}
                   </a>
                 </li>
                 <li className="flex gap-3 py-2.5 text-sm text-white/85">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-amber" aria-hidden="true" />
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white" aria-hidden="true" />
                   <span>
                     {siteConfig.address.street}
                     <br />
@@ -266,6 +279,7 @@ export function Contacto() {
                   </span>
                 </li>
               </ul>
+              </div>
             </div>
           </Reveal>
         </div>

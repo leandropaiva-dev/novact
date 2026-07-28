@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { buttonClass } from "./Button";
 import { cn } from "@/lib/utils";
 
 type Tone = "default" | "onDark";
 
-/** Ligação de texto com seta que avança no hover/focus. Rota interna ou âncora. */
+/**
+ * Ação secundária: botão outline/ghost com seta que avança no hover/focus.
+ * Reaproveita as variantes do Button (outline em fundo claro, onGradientOutline
+ * sobre o gradiente). Rota interna → next/link; âncora/externo → <a>.
+ */
 export function ArrowLink({
   href,
   children,
@@ -17,9 +22,9 @@ export function ArrowLink({
   className?: string;
 }) {
   const cls = cn(
-    "group inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold transition-colors",
-    tone === "onDark" ? "text-white hover:text-white" : "text-brand-orange hover:text-brand-orange-deep",
-    className
+    "group",
+    buttonClass(tone === "onDark" ? "onGradient" : "primary"),
+    className,
   );
   const inner = (
     <>

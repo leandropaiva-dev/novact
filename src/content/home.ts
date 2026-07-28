@@ -110,7 +110,7 @@ export const home = {
       {
         slug: "cooperacao-governacao",
         icon: "waypoints",
-        color: "blue-soft",
+        color: "green",
         title: "Cooperação Institucional e Governação",
         blurb:
           "Construímos parcerias e redes de cooperação entre entidades públicas, privadas, sociais e académicas, a nível nacional e internacional.",
@@ -130,6 +130,50 @@ export const home = {
     title: "Projetos em preparação",
     text: "Estamos a desenvolver as primeiras candidaturas e parcerias, em cooperação com entidades locais, nacionais e europeias. Acompanhe aqui os projetos da NOVACT à medida que forem aprovados e iniciados.",
     link: { label: "Ver áreas de projeto", href: "/areas" },
+    // Linhas de projeto em preparação (briefing, secção 6). Não são projetos reais
+    // — copy condensada dos textos de área, a validar. Ligam à área respetiva.
+    preview: [
+      {
+        title: "Capacitação e Formação",
+        blurb:
+          "Programas de formação, mentoria e desenvolvimento organizacional para profissionais, organizações e comunidades.",
+        slug: "formacao-capacitacao",
+        icon: "graduation-cap",
+        color: "amber",
+      },
+      {
+        title: "Saúde Mental de Proximidade",
+        blurb:
+          "Respostas preventivas e próximas: literacia emocional, estimulação cognitiva e apoio a cuidadores informais.",
+        slug: "saude-mental",
+        icon: "hand-heart",
+        color: "orange",
+      },
+      {
+        title: "Comunidades de Energia Renovável",
+        blurb:
+          "Criação e governação de comunidades de energia, ligando a transição energética à inclusão social.",
+        slug: "sustentabilidade-ambiente-energia",
+        icon: "leaf",
+        color: "amber",
+      },
+      {
+        title: "Inovação Social e Desenvolvimento Territorial",
+        blurb:
+          "Diagnósticos, estratégias locais e projetos de inovação social em territórios rurais e de baixa densidade.",
+        slug: "desenvolvimento-territorial",
+        icon: "compass",
+        color: "green",
+      },
+      {
+        title: "Cooperação Europeia",
+        blurb:
+          "Candidaturas e parcerias em programas europeus — do diagnóstico à execução e avaliação de impacto.",
+        slug: "projetos-cooperacao-financiamento",
+        icon: "landmark",
+        color: "blue",
+      },
+    ],
   },
 
   parcerias: {

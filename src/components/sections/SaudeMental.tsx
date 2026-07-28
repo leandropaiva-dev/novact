@@ -5,6 +5,7 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { PhotoReveal } from "@/components/motion/PhotoReveal";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 const { saudeMental } = home;
 const img = images.saudeMental;
@@ -85,19 +86,28 @@ export function SaudeMental() {
           </Reveal>
 
           <div className="flex justify-center lg:justify-end">
-            <div className="relative aspect-square w-[min(74vw,23rem)]">
-              <PhotoReveal
-                src={img.src}
-                alt={img.alt}
-                blurDataURL={img.blurDataURL}
-                sizes="(min-width: 1024px) 24rem, 74vw"
-                coverColor="#72bef2"
-                cols={6}
-                rows={6}
-                className="absolute inset-[6%] rounded-full shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
-              />
-              <ApertureRing />
-            </div>
+            <CardContainer
+              containerClassName="py-0"
+              className="relative aspect-square w-[min(84vw,31rem)]"
+            >
+              <CardBody className="relative h-full w-full">
+                <CardItem translateZ={60} className="absolute inset-[6%]">
+                  <PhotoReveal
+                    src={img.src}
+                    alt={img.alt}
+                    blurDataURL={img.blurDataURL}
+                    sizes="(min-width: 1024px) 24rem, 74vw"
+                    coverColor="#72bef2"
+                    cols={6}
+                    rows={6}
+                    className="h-full w-full rounded-full shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
+                  />
+                </CardItem>
+                <CardItem translateZ={110} className="absolute inset-0">
+                  <ApertureRing />
+                </CardItem>
+              </CardBody>
+            </CardContainer>
           </div>
         </div>
       </Container>

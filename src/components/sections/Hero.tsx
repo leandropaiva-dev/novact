@@ -24,23 +24,35 @@ export function Hero() {
       {liveGradient ? (
         <motion.div
           aria-hidden="true"
-          className="absolute -inset-[35%] -z-20 bg-gradient-brand"
-          initial={{ x: "-8%", y: "-4%", scale: 1.12, rotate: -3 }}
+          className="absolute -inset-[28%] -z-20 bg-gradient-brand"
+          initial={{ x: "-6%", y: "-3%", scale: 1.08, rotate: -2 }}
           animate={{
-            x: ["-8%", "8%", "-4%", "-8%"],
-            y: ["-4%", "5%", "-5%", "-4%"],
-            scale: [1.12, 1.22, 1.14, 1.12],
-            rotate: [-3, 3, -2, -3],
+            x: ["-6%", "6%", "-3%", "-6%"],
+            y: ["-3%", "4%", "-4%", "-3%"],
+            scale: [1.08, 1.16, 1.1, 1.08],
+            rotate: [-2, 2, -1, -2],
           }}
           transition={{ duration: 14, ease: "easeInOut", repeat: Infinity }}
         />
       ) : (
         <div aria-hidden="true" className="absolute inset-0 -z-20 bg-gradient-brand" />
       )}
-      {/* Overlay de contraste obrigatório sob texto branco */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-brand-overlay" />
-      {/* Anel cortado ambiente (aperture) — a sangrar pela direita, subtil */}
-      <BrandO className="pointer-events-none absolute -right-24 -top-16 -z-10 h-[26rem] w-[26rem] opacity-[0.14] sm:-right-16 sm:h-[34rem] sm:w-[34rem]" />
+      {/* Overlay de contraste — leve, só o suficiente para o texto do lado
+          esquerdo; o resto do gradiente fica claro e vibrante. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(18,48,71,0.24)_0%,rgba(18,48,71,0.06)_44%,transparent_74%)]"
+      />
+      {/* Motivo de marca — anel branco grosso, um quarto visível no canto superior
+          direito (como na Saúde Mental). */}
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-0 -z-10 h-[46rem] w-[46rem] -translate-y-[32%] translate-x-[30%] sm:h-[58rem] sm:w-[58rem]"
+      >
+        <circle cx="50" cy="50" r="41" stroke="#ffffff" strokeWidth="16" opacity="0.16" />
+      </svg>
 
       <div className="mx-auto w-full max-w-7xl px-4 py-24 md:px-6 lg:w-[83.333%] lg:px-0">
         <div className="max-w-3xl">

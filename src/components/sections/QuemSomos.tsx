@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal } from "@/components/motion/Reveal";
-import { PhotoReveal } from "@/components/motion/PhotoReveal";
+import { TiltImage } from "@/components/motion/TiltImage";
 
 const { quemSomos } = home;
 const img = images.quemSomos;
@@ -27,15 +27,12 @@ export function QuemSomos() {
             </div>
           </Reveal>
 
-          <PhotoReveal
+          <TiltImage
             src={img.src}
             alt={img.alt}
             blurDataURL={img.blurDataURL}
             sizes="(min-width: 1024px) 40vw, 100vw"
-            coverColor="#ffffff"
-            cols={7}
-            rows={5}
-            className="aspect-[4/3] rounded-[18px] ring-1 ring-border"
+            className="aspect-[4/3]"
           />
         </div>
       </Container>

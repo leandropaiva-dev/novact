@@ -6,6 +6,10 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BrandGradientDefs } from "@/components/layout/BrandO";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: {
@@ -24,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-PT"
-      className={`${inter.variable} ${display.variable} ${wordmark.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", inter.variable, display.variable, wordmark.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">
         <noscript>

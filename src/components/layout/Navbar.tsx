@@ -14,16 +14,19 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  // Fecha o menu ao mudar de rota — padrão "ajustar estado no render" (sem efeito).
+  const [prevPath, setPrevPath] = useState(pathname);
+  if (pathname !== prevPath) {
+    setPrevPath(pathname);
+    setOpen(false);
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -56,11 +59,20 @@ export function Navbar() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "relative inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium transition-colors",
-                      active ? "text-ink" : "text-ink hover:text-brand-orange"
+                      "group relative inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-ink transition-colors",
+                      !active && "hover:text-brand-orange"
                     )}
                   >
-                    {item.label}
+                    <span className="relative">
+                      {item.label}
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full origin-left rounded-full bg-gradient-brand transition-transform duration-300 ease-out motion-reduce:transition-none",
+                          active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        )}
+                      />
+                    </span>
                   </Link>
                 </li>
               );
